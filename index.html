@@ -20,14 +20,40 @@
       position: relative;
     }
 
-    .center-text {
+    .center-container {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+    }
+
+    .center-text {
       font-size: 4rem;
       color: #333;
-      z-index: 2;
+    }
+
+    .sub-text {
+      font-size: 1.25rem;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+
+    .login-button {
+      margin-top: 1.5rem;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-button:hover {
+      background-color: #0056b3;
     }
 
     .rain {
@@ -57,7 +83,12 @@
   </style>
 </head>
 <body>
-  <div class="center-text">Hello, World!</div>
+  <div class="center-container">
+    <div class="center-text">Hello, World!</div>
+    <div class="sub-text">Simply the best.</div>
+    <button class="login-button">Login</button>
+  </div>
+
   <div class="rain" id="rain"></div>
 
   <script>
