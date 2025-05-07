@@ -2,106 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rainy Centered Text</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Notification</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      height: 100vh;
-      background: #f0f2f5;
-      font-family: 'Roboto', sans-serif;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .center-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      z-index: 2;
-    }
-
-    .center-text {
-      font-size: 4rem;
-      color: #333;
-    }
-
-    .sub-text {
-      font-size: 1.25rem;
-      color: #666;
-      margin-top: 0.5rem;
-    }
-
-    .login-button {
-      margin-top: 1.5rem;
-      padding: 0.75rem 2rem;
-      font-size: 1rem;
-      background-color: #007bff;
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #333;
       color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .login-button:hover {
-      background-color: #0056b3;
-    }
-
-    .rain {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      padding: 10px 20px;
+      border-radius: 5px;
+      opacity: 0;
       pointer-events: none;
-      z-index: 1;
+      transition: opacity 1s ease;
+      font-family: sans-serif;
+      font-size: 14px;
     }
 
-    .drop {
-      position: absolute;
-      bottom: 100%;
-      width: 2px;
-      height: 20px;
-      background: rgba(0, 0, 0, 0.1);
-      animation: fall linear infinite;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh);
-      }
+    .notification.show {
+      opacity: 1;
+      pointer-events: auto;
     }
   </style>
 </head>
 <body>
-  <div class="center-container">
-    <div class="center-text">Hello, World!</div>
-    <div class="sub-text">Simply the best.</div>
-    <button class="login-button">Login</button>
-  </div>
 
-  <div class="rain" id="rain"></div>
+  <div id="notification" class="notification">This is a notification</div>
 
   <script>
-    const rainContainer = document.getElementById('rain');
-    const numberOfDrops = 100;
+    showNotification();
+    function showNotification() {
+      const notification = document.getElementById('notification');
+      notification.classList.add('show');
 
-    for (let i = 0; i < numberOfDrops; i++) {
-      const drop = document.createElement('div');
-      drop.classList.add('drop');
-      drop.style.left = `${Math.random() * 100}%`;
-      drop.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
-      drop.style.animationDelay = `${Math.random() * 2}s`;
-      rainContainer.appendChild(drop);
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000); // Hide after 3 seconds
     }
   </script>
 </body>
